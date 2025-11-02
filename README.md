@@ -20,6 +20,26 @@
 
 ---
 
+HP Engage Pro (Rocky Linux)
+├── k3s master
+│ ├── pos-ui Pod (React / Nginx)
+│ ├── pos-api Pod (FastAPI / Python)
+│ ├── db Pod (Postgres)
+│ ├── gateway Pod (Python)
+│ ├── admin-cms Pod (Vue / Django)
+│ ├── sync-agent CronJob
+│ └── monitoring stack (Prometheus + Grafana + Alertmanager)
+
+
+## Data Flow
+1. Kasiyer barkod okutma → `pos-ui`
+2. `pos-ui` → `pos-api` ürün & satış işlemi
+3. `pos-api` → `db` kaydı
+4. `pos-api` ↔ `gateway` (Ingenico / Yazıcı)
+5. Gün sonu → `sync-agent` → Cloud backup
+6. `monitoring` stack: pod health, resource usage, error rate
+
+
 ## 🧠 Teknoloji Yığını
 
 - **Frontend:** React (Vite)  
@@ -30,6 +50,12 @@
 - **Monitoring:** Prometheus, Grafana, Alertmanager  
 - **OS:** Rocky Linux (RHEL türevi)
 
+
+🧾 İletişim
+
+KronosDX Dijital & Bilişim Teknolojileri Ltd. Şti.
+📍 İstanbul, Türkiye
+🌐 https://kronosdx.com
 ---
 
 ## ⚙️ Hızlı Başlangıç
